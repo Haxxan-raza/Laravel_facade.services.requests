@@ -6,6 +6,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+
 class TestFormHelperClass
 {
 
@@ -22,10 +23,10 @@ class TestFormHelperClass
         return $profilePhoto;
     }
     
-    public function updateImage($image,$dbrecord) {
+    public function updateImage($image) {
+       
         if(empty($image)) {
-            $profilePhoto = $dbrecord;
-        } else {
+        }  {
             $imagePath =  $getimagePath.$dbrecord;
             if(File::exists($imagePath)) {
                 File::delete($imagePath);
@@ -37,6 +38,9 @@ class TestFormHelperClass
             $profilePhoto = $fileName;
         }
         return $profilePhoto;
+
+    }
+
 
     }
 

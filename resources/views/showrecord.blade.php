@@ -6,15 +6,19 @@
     <thead>
         
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
+    @foreach($users as $data)
       <tr>
-        <td>John</td>
-        <td>Doe</td>
+        <td>{{$data->name}}</td>
+        <td><img width="30%" class="img-circle" src="{{ asset('images/' . $data->image)}}" /></td>
+        <td><a href="{{url('editrecord'.'/'.$data->id)}}" class="btn btn-primary">Edit </a></td>
       </tr>
     </tbody>
+    @endforeach
   </table>
   @endsection

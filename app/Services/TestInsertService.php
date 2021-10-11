@@ -20,16 +20,16 @@ class TestInsertService
         ]);
         return back();
     }
-    public function updateForm( $request, $id) {
-        $data=User::find($id);
-        dd($data);
-      $image= Helpers::updateImage($request->image , $data->image);
-      $data->update([
-        'name' => $request->name,
-        'image' => $image
-      ]);
-      return back();
-  }
+    public function updateForm(Request $request) {
+      $data=User::find($request->id);
+    $image= Helpers::updateImage($request->image , $data->image);
+    $data->update([
+      'name' => $request->name,
+      'image' => $image
+    ]);
+    return redirect('showrecord');
+}
+
 
 
 }

@@ -12,25 +12,24 @@
         </ul>
       </div><br />
 @endif
-  <form action="{{ url('testview.store') }}" method="post" enctype="multipart/form-data" >
+  <form action="{{url('edit')}}" method="post" enctype="multipart/form-data" >
     <div class="form-group">
     @csrf
-    <input type="hidden" name="form_id"  value="{{ $alldata->id ?? ''}}">
+    <input type="hidden" name="id"  value="{{ $allrecord->id ?? ''}}">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{ $alldata->name ?? ''}}">
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{ $allrecord->name ?? ''}}">
       @error('name')
           <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     </div>
     <div class="form-group">
     <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" name="image" id="image" value="{{ $alldata->image ?? ''}}">
+    <input type="file" class="form-control-file" name="image" id="image" value="{{ $allrecord->image ?? ''}}">
     @error('image')
           <div class="alert alert-danger">{{ $message }}</div>
     @enderror
   </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="{{ url('edit') }}" class="btn btn-primary">Update Record</a>
-    <a href="{{url('showrecord')}}" class="btn btn-primary">Show Record</a>
+    <!-- <a href="showrecord" class="btn btn-primary">Show Record</a> -->
   </form>
 @endsection

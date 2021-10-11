@@ -13,7 +13,6 @@ class TestProjectController extends Controller
     public function index() {
         return view('testForm');
     }
-
     public function store(StoreUser  $request ,TestInsertService $data)
     {
         $input = $request->all();
@@ -21,10 +20,21 @@ class TestProjectController extends Controller
            return back()->with('success', 'User created successfully.');
     }
     
- 
-    public function updateForm(Request $request,TestInsertService $data , $id) {
 
-       $data->updateForm($request,$id);
+    public function showRecord() {
+        $users = User::all();
+        return view('showrecord', compact('users'));
+    }
+
+    public function editRecord($id) {
+        $allrecord= User::find($id);
+        return view('testFormUpdate', compact('allrecord'));
+    }
+
+  
+    public function updateForm(Request $request,TestInsertService $data) {
+
+       $data->updateForm( $request);
 
            return back()->with('success', 'User updated successfully.');
     }

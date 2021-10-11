@@ -19,4 +19,6 @@ Route::get('/', function () {
  
 Route::get('testview',[TestProjectController::class,'index']);
 Route::post('testview.store',[TestProjectController::class,'store']);
-
+Route::get('showrecord',[TestProjectController::class,'showrecord']);
+Route::get('editrecord/{id}',[TestProjectController::class,'editRecord']);
+Route::post('edit',[TestProjectController::class,'updateForm']);
