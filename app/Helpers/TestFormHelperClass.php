@@ -5,12 +5,16 @@ namespace App\Helpers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\file;
+use Exception;
 
 
 class TestFormHelperClass
 {
-
+   
+    //insert Image
     public function saveImage($image) {
+ try{    
         $profilePhoto =  '';
         if(empty($image)) {
             $profilePhoto =  '';
@@ -21,27 +25,35 @@ class TestFormHelperClass
             $profilePhoto = $fileName;
         }
         return $profilePhoto;
-    }
+    } catch(Exception $e) {
+      dd($e->getMessage());       
+      }
+  
+   }
+    //Update Image
     
     public function updateImage($image) {
-       
+ try{ 
+        $profilePhoto =  '';
         if(empty($image)) {
-        }  {
-            $imagePath =  $getimagePath.$dbrecord;
-            if(File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
-            $destinationPath = $getimagePath;
-            $file = $image;
-            $fileName = time().'.'.$file->clientExtension();
-            $file->move($destinationPath, $fileName);
+            $profilePhoto =  '';
+        } else {
+            $destinationPath = public_path().'/images/' ;
+            $fileName = time().'.'.$image->clientExtension();
+            $image->move($destinationPath, $fileName);
             $profilePhoto = $fileName;
         }
         return $profilePhoto;
+    } catch (Exception $e) {
+        dd($e->getMessage());
+         }
+        
+}
+        
 
-    }
+    
 
 
-    }
+    
 
 }

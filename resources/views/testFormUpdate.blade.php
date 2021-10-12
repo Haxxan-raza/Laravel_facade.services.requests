@@ -2,16 +2,15 @@
 @section('content')
 
 <h2>Data form</h2>
+@if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
 
-@if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div><br />
-@endif
   <form action="{{url('edit')}}" method="post" enctype="multipart/form-data" >
     <div class="form-group">
     @csrf
@@ -22,14 +21,19 @@
           <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     </div>
+    
+    
     <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" name="image" id="image" value="{{ $allrecord->image ?? ''}}">
+    <div class="custom-file">
+    <input type="file" class="custom-file-input"  name ="image" id="image" enctype="multipart/form-data" value="{{ asset('images/' . $allrecord->image)}}" aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" for="inputGroupFile01">Image Select... </label>
+    <img width="60px" height="50px" class="img-circle" src="{{ asset('images/' . $allrecord->image)}}" />
     @error('image')
           <div class="alert alert-danger">{{ $message }}</div>
     @enderror
   </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+    <button type="submit" class="btn btn-primary">Update Submit</button>
     <!-- <a href="showrecord" class="btn btn-primary">Show Record</a> -->
   </form>
 @endsection

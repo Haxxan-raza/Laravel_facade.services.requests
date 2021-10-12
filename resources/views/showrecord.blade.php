@@ -1,7 +1,15 @@
 @extends('layout')
 @section('content')
-<h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>            
+  <p><h1>Table Record</h1></p>  
+  
+  @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
   <table class="table">
     <thead>
         
