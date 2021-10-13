@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateTest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Helpers;
 use App\Services\TestInsertService;
+use Illuminate\Pagination\Paginator;
 class TestProjectController extends Controller
 {
     //view Form
@@ -24,7 +26,7 @@ class TestProjectController extends Controller
     
   //show Record
     public function showRecord() {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('showrecord', compact('users'));
     }
    //Edit Record

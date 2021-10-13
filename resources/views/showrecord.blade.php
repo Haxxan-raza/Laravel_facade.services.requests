@@ -27,6 +27,11 @@
         <td><a href="{{url('editrecord'.'/'.$data->id)}}" class="btn btn-primary">Edit </a></td>
       </tr>
     </tbody>
+    <div class="d-flex justify-content-center">
+</div>
     @endforeach
   </table>
+        <div class="d-flex justify-content-center">
+                {!! $users->appends(['sort' => 'science-stream'])->links() !!}
+            </div>            
   @endsection
